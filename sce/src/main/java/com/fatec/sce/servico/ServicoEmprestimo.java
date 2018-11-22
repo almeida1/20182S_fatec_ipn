@@ -13,6 +13,7 @@ import com.fatec.sce.model.Usuario;
 
 public class ServicoEmprestimo {
 	Logger logger = Logger.getLogger(ServicoEmprestimo.class);
+
 	public Emprestimo empresta(Livro livro, Usuario usuario) {
 		if (livro == null | usuario == null) {
 			throw new RuntimeException("Dados inválidos.");
@@ -34,17 +35,21 @@ public class ServicoEmprestimo {
 	}
 
 	/**
-	 * Objetivo - verifica se a devolução esta atrasada
+	 * Objetivo - verificar se a devolução esta atrasada
 	 *
 	 * @param umEmprestimo
-	 * @return int < 0 se estiver atrasado e > 0 se estive no prazo
+	 * @return int < 0 se estiver atrasado e > 0 se estiver no prazo
+	 *         retorna nulo se o objeto emprestimo é nulo.
 	 */
-	public int devolucao(Emprestimo umEmprestimo) {
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd");
-		DateTime dataAtual = fmt.parseDateTime(new DateTime().toString(fmt));
-		DateTime dataDevolucao = fmt.parseDateTime(umEmprestimo.getDataDevolucao());
-		int dias = Days.daysBetween(dataAtual, dataDevolucao).getDays();
-		Duration duration = new Duration(dataAtual, dataDevolucao); 
-		return dias;
+	public Integer devolucao(Emprestimo umEmprestimo) {
+		if (umEmprestimo != null) {
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd");
+			DateTime dataAtual = fmt.parseDateTime(new DateTime().toString(fmt));
+			DateTime dataDevolucao = fmt.parseDateTime(umEmprestimo.getDataDevolucao());
+			int dias = Days.daysBetween(dataAtual, dataDevolucao).getDays();
+			return dias;
+		} else {
+			return null;
+		}
 	}
 }

@@ -12,6 +12,7 @@ public class Emprestimo {
 	private Usuario usuario;
 	private String dataEmprestimo;
 	private String dataDevolucao;
+	private String devolucaoDataPrevista;
 
 	public Livro getLivro() {
 		return livro;

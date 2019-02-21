@@ -1,6 +1,8 @@
 package com.fatec.sce.model;
 
-import com.mysql.jdbc.Connection;
+
+import java.sql.Connection;
+
 
 public class MySQLDAOFactory extends DAOFactory {
 	public static Connection createConnection() {

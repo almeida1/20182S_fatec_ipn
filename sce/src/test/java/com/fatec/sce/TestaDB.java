@@ -1,7 +1,8 @@
 package com.fatec.sce;
 
 import static org.junit.Assert.*;
-import com.mysql.jdbc.Connection;
+
+import java.sql.Connection;
 
 import org.junit.Test;
 
@@ -18,13 +19,18 @@ public class TestaDB {
 	public void quandoConectaComOBancoRetornaOK() {
 		// cenario
 		Connection c = null;
+		// cenario
+
+		FabricaDeConexoes fabricaDeConexoes = null;
+
 		try {
 			// acao
+
 			c = new FabricaDeConexoes().getConnection();
 			// verificacao
 			assertNotNull(c);
 		} catch (Exception e) {
-			fail("nao deveria falhar");
+			fail("nao deveria falhar: " + e.getMessage());
 		}
 	}
 

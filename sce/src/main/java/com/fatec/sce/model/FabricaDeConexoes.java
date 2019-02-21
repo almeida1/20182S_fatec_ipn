@@ -5,8 +5,10 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class FabricaDeConexoes {
 	private String url = "jdbc:mysql://localhost:3306/biblioteca";
@@ -29,9 +31,7 @@ public class FabricaDeConexoes {
 		try {
 			Class.forName(driver);
 			return (Connection) DriverManager.getConnection(url, usuario, senha);
-		} catch (CommunicationsException e) {
-			logger.info("Exceção de comunicacao com o DB causa: " + e.getMessage());
-			throw new RuntimeException(e);
+		
 		} catch (SQLException e) {
 			logger.info("Exceção geral causa SQLException: " + e.getMessage());
 			throw new RuntimeException(e);

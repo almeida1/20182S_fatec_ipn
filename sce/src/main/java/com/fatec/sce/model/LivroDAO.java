@@ -3,8 +3,10 @@ package com.fatec.sce.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 
 public class LivroDAO implements ILivroDAO {
